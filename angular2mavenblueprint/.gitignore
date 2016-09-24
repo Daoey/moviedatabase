@@ -1,3 +1,5 @@
 /target/
 /WebContent/node_modules/**
 /WebContent/typings/**
+/WebContent/app/build**
+/WebContent/npm-debug.log
