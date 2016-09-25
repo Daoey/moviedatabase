@@ -30,7 +30,7 @@ public final class Movie {
 
     public static class MovieBuilder {
 
-        private int id;
+        private int id = 0;
         private int productionYear;
         private String title;
 

@@ -8,7 +8,16 @@ public final class Review {
     private final String reviewText;
     private final ReviewUser reviewUser;
 
-    private Review(int id, Movie movie, String reviewDate, String reviewText, ReviewUser reviewUser) {
+    /**
+     * Review constructor.
+     * 
+     * @param id    Review id
+     * @param movie Movie
+     * @param reviewDate Review date
+     * @param reviewText Review text
+     * @param reviewUser Review user
+     */
+    public Review(int id, Movie movie, String reviewDate, String reviewText, ReviewUser reviewUser) {
         this.id = id;
         this.movie = movie;
         this.reviewDate = reviewDate;
@@ -32,7 +41,7 @@ public final class Review {
         return reviewText;
     }
     
-    public ReviewUser getReviewUserId() {
+    public ReviewUser getReviewUser() {
         return reviewUser;
     }
 

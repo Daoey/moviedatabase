@@ -97,13 +97,13 @@ public final class Sql {
     }
 
     /**
-     * Inserts a row to the database.
+     * Insert/delete/update a row to the database.
      * 
      * @throws SQLException
      *             Can throw an SQLException whilst interacting with the
      *             database.
      */
-    public void insert() throws SQLException {
+    public void update() throws SQLException {
         try (Connection connection = DriverManager.getConnection(url, user, password);
                 PreparedStatement statement = prepareStatement(connection)) {
 

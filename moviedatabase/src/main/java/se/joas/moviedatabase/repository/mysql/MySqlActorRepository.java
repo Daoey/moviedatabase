@@ -9,7 +9,7 @@ import se.joas.moviedatabase.repository.RepositoryException;
 
 public final class MySqlActorRepository implements ActorRepository {
 
-    private static final ResultMapper<Actor> USER_MAPPER = (r -> Actor
+    private static final ResultMapper<Actor> ACTOR_MAPPER = (r -> Actor
             .builder(r.getString("firstName"), r.getString("lastName")).setMiddleName(r.getString("middleName"))
             .setId(r.getInt("id")).build());
     private final String url = "jdbc:mysql://localhost:3306/moviedatabase?useSSL=false";
@@ -21,7 +21,7 @@ public final class MySqlActorRepository implements ActorRepository {
         String select = "SELECT * FROM Actor";
 
         try {
-            return new Sql(url, user, Password.getPassword()).query(select).selectMany(USER_MAPPER);
+            return new Sql(url, user, Password.getPassword()).query(select).selectMany(ACTOR_MAPPER);
         } catch (SQLException e) {
             throw new RepositoryException(e.getMessage(), e);
         }
@@ -34,7 +34,7 @@ public final class MySqlActorRepository implements ActorRepository {
 
         try {
             new Sql(url, user, Password.getPassword()).query(insert).parameter(actor.getFirstName())
-                    .parameter(actor.getMiddleName()).parameter(actor.getLastName()).insert();
+                    .parameter(actor.getMiddleName()).parameter(actor.getLastName()).update();
         } catch (SQLException e) {
             throw new RepositoryException(e.getMessage(), e);
         }
@@ -49,11 +49,11 @@ public final class MySqlActorRepository implements ActorRepository {
         try {
             // Get the actor with the actor id
             Actor selectedActor = new Sql(url, user, Password.getPassword()).query(select).parameter(actor.getId())
-                    .selectSingle(USER_MAPPER);
+                    .selectSingle(ACTOR_MAPPER);
             // Check if they are the same
             if (actor.equals(selectedActor)) {
                 String delete = "DELETE FROM actor WHERE id=?";
-                new Sql(url, user, Password.getPassword()).query(delete).parameter(actor.getId()).insert();
+                new Sql(url, user, Password.getPassword()).query(delete).parameter(actor.getId()).update();
                 
             } else {
                 throw new RepositoryException("Actor did not exactly match any actor record in MySqlDataBase \n"
