@@ -3,3 +3,4 @@
 /WebContent/typings/**
 /WebContent/app/build**
 /WebContent/npm-debug.log
+/src/main/java/se/joas/moviedatabase/repository/mysql/Password.java
