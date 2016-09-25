@@ -18,7 +18,7 @@ public final class MySqlActorRepository implements ActorRepository {
     @Override
     public List<Actor> getAllActors() throws RepositoryException {
 
-        String select = "SELECT * FROM actor";
+        String select = "SELECT * FROM Actor";
 
         try {
             return new Sql(url, user, Password.getPassword()).query(select).selectMany(USER_MAPPER);
@@ -42,8 +42,28 @@ public final class MySqlActorRepository implements ActorRepository {
     }
 
     @Override
-    public void removeActor(Actor actor) {
-        // TODO Auto-generated method stub
+    public void removeActor(Actor actor) throws RepositoryException {
+
+        String select = "SELECT * FROM Actor WHERE id=?";
+
+        try {
+            // Get the actor with the actor id
+            Actor selectedActor = new Sql(url, user, Password.getPassword()).query(select).parameter(actor.getId())
+                    .selectSingle(USER_MAPPER);
+            // Check if they are the same
+            if (actor.equals(selectedActor)) {
+                String delete = "DELETE FROM actor WHERE id=?";
+                new Sql(url, user, Password.getPassword()).query(delete).parameter(actor.getId()).insert();
+                
+            } else {
+                throw new RepositoryException("Actor did not exactly match any actor record in MySqlDataBase \n"
+                        + "Actor requested for deletion: " + actor + "\n" + "Actor found in database: "
+                        + selectedActor);
+            }
+        } catch (SQLException e) {
+            throw new RepositoryException(e.getMessage(), e);
+        }
+
 
     }
 

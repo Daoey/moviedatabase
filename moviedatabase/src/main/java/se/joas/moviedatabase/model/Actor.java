@@ -18,6 +18,30 @@ public final class Actor {
         return new ActorBuilder(firstName, lastName);
     }
 
+    @Override
+    public String toString() {
+        return "Id: " + id + "\nFirst name: " + firstName + "\nMiddle name: " + middleName + "\nLast name" + lastName;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Actor) {
+            Actor otherActor = (Actor) obj;
+            return id == otherActor.getId() && firstName.equals(otherActor.getFirstName());
+        }
+
+        return false;
+    }
+    
+    @Override
+    public int hashCode() {
+        int result = 1;
+        result += 37 * new Integer(id).hashCode();
+        result += 37 * firstName.hashCode();
+
+        return result;
+    }
+
     public int getId() {
         return id;
     }

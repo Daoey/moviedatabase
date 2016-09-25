@@ -33,6 +33,8 @@ public final class Main {
             System.out.println("Middle name : " + actor.getMiddleName());
             System.out.println("Last name: " + actor.getLastName());
         }
+        
+        movieService.removeActor(actors.get(0));
 
     }
 }
