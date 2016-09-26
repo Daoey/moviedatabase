@@ -26,8 +26,15 @@ public class MySqlReviewUserRepository implements ReviewUserRepository {
 
     @Override
     public void addReviewUser(ReviewUser reviewUser) throws RepositoryException {
-        // TODO Auto-generated method stub
+        
+        String insert = "INSERT INTO Review(username, registerDate) VALUES(?,?)";
 
+        try {
+            new Sql(url, user, Password.getPassword()).query(insert).parameter(reviewUser.getUsername())
+                    .parameter(reviewUser.getRegisterDate()).update();
+        } catch (SQLException e) {
+            throw new RepositoryException(e.getMessage(), e);
+        }
     }
 
     @Override

@@ -27,7 +27,14 @@ public class MySqlMovieRepository implements MovieRepository {
 
     @Override
     public void addMovie(Movie movie) throws RepositoryException {
-        // TODO Auto-generated method stub
+        String insert = "INSERT INTO Movie(title, productionYear) VALUES(?,?)";
+
+        try {
+            new Sql(url, user, Password.getPassword()).query(insert).parameter(movie.getTitle())
+                    .parameter(movie.getProductionYear()).update();
+        } catch (SQLException e) {
+            throw new RepositoryException(e.getMessage(), e);
+        }
 
     }
 

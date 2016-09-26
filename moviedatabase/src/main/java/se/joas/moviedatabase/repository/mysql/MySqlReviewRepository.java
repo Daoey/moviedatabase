@@ -39,7 +39,16 @@ public class MySqlReviewRepository implements ReviewRepository {
 
     @Override
     public void addReview(Review review) throws RepositoryException {
-        // TODO Auto-generated method stub
+
+        String insert = "INSERT INTO Review(reviewDate, reviewText, reviewUserId, movieId) VALUES(?,?,?,?)";
+
+        try {
+            new Sql(url, user, Password.getPassword()).query(insert).parameter(review.getReviewDate())
+                    .parameter(review.getReviewText()).parameter(review.getReviewUser().getId())
+                    .parameter(review.getMovie().getId()).update();
+        } catch (SQLException e) {
+            throw new RepositoryException(e.getMessage(), e);
+        }
 
     }
 
@@ -48,7 +57,7 @@ public class MySqlReviewRepository implements ReviewRepository {
         // TODO Auto-generated method stub
 
     }
-    
+
     private List<Review> createReviews(List<DatabaseReview> databaseReviews, List<Movie> movies,
             List<ReviewUser> reviewUsers) {
 

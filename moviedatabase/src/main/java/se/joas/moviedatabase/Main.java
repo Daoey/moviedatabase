@@ -36,6 +36,8 @@ public final class Main {
             System.out.println("Middle name : " + actor.getMiddleName());
             System.out.println("Last name: " + actor.getLastName());
         }
+        
+        movieService.addMovie(Movie.builder(2003, "Harry Potter").build());
 
         List<Movie> movies = movieService.getAllMovies();
         System.out.println("---Movies---");
@@ -44,7 +46,7 @@ public final class Main {
             System.out.println("Title: " + movie.getTitle());
             System.out.println("Production year: " + movie.getProductionYear());
         }
-
+        
         List<Review> reviews = movieService.getAllReviews();
         System.out.println("---Reviews---");
         for (Review review : reviews) {
