@@ -30,6 +30,12 @@ public final class DatabaseReview {
         this.reviewUserId = reviewUserId;
     }
 
+    @Override
+    public String toString() {
+        return "Actor id: " + id + "\n" + "Movie id: " + movieId + "\nReview date: " + reviewDate + "\nReview text: "
+                + reviewText + "\nReview user id: " + reviewUserId;
+    }
+
     public int getId() {
         return id;
     }

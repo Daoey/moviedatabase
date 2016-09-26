@@ -12,6 +12,11 @@ public final class ReviewUser {
         this.registerDate = registerDate;
     }
 
+    @Override
+    public String toString() {
+        return "Review user id: " + id + "\nUsername: " + username + "\nRegister date: " + registerDate;
+    }
+
     public static ReviewUserBuilder builder(String username, String registerDate) {
         return new ReviewUserBuilder(username, registerDate);
     }

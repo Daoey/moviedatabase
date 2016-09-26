@@ -11,11 +11,16 @@ public final class Review {
     /**
      * Review constructor.
      * 
-     * @param id    Review id
-     * @param movie Movie
-     * @param reviewDate Review date
-     * @param reviewText Review text
-     * @param reviewUser Review user
+     * @param id
+     *            Review id
+     * @param movie
+     *            Movie
+     * @param reviewDate
+     *            Review date
+     * @param reviewText
+     *            Review text
+     * @param reviewUser
+     *            Review user
      */
     public Review(int id, Movie movie, String reviewDate, String reviewText, ReviewUser reviewUser) {
         this.id = id;
@@ -24,23 +29,29 @@ public final class Review {
         this.reviewText = reviewText;
         this.reviewUser = reviewUser;
     }
-        
+
+    @Override
+    public String toString() {
+        return "Review id: " + id + "\nMovie title" + movie.getTitle() + "\nReview date: " + reviewDate
+                + "\nReview text: " + reviewText + "\nReview user username" + reviewUser.getUsername();
+    }
+
     public int getId() {
         return id;
     }
-    
+
     public Movie getMovie() {
         return movie;
     }
-    
+
     public String getReviewDate() {
         return reviewDate;
     }
-    
+
     public String getReviewText() {
         return reviewText;
     }
-    
+
     public ReviewUser getReviewUser() {
         return reviewUser;
     }

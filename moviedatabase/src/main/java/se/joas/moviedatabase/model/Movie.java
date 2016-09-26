@@ -11,6 +11,11 @@ public final class Movie {
         this.productionYear = productionYear;
         this.title = title;
     }
+    
+    @Override
+    public String toString() {
+        return "Movie id: " + id + "\nProduction year: " + productionYear + "\nTitle: " + title;
+    }
 
     public static MovieBuilder builder(int productionYear, String title) {
         return new MovieBuilder(productionYear, title);
