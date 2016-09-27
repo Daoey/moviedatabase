@@ -20,11 +20,15 @@ public final class Actor {
 
     @Override
     public String toString() {
-        return "Id: " + id + "\nFirst name: " + firstName + "\nMiddle name: " + middleName + "\nLast name" + lastName;
+        return "Actor id: " + id + "\nFirst name: " + firstName + "\nMiddle name: " + middleName + "\nLast name: "
+                + lastName;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
         if (obj instanceof Actor) {
             Actor otherActor = (Actor) obj;
             return id == otherActor.getId() && firstName.equals(otherActor.getFirstName());
@@ -32,7 +36,7 @@ public final class Actor {
 
         return false;
     }
-    
+
     @Override
     public int hashCode() {
         int result = 1;

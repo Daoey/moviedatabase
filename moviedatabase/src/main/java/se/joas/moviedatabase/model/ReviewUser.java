@@ -17,6 +17,28 @@ public final class ReviewUser {
         return "Review user id: " + id + "\nUsername: " + username + "\nRegister date: " + registerDate;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof ReviewUser) {
+            ReviewUser otherReviewUser = (ReviewUser) obj;
+            return id == otherReviewUser.id && username.equals(otherReviewUser.username)
+                    && registerDate.equals(otherReviewUser.registerDate);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result += 31 * id;
+        result += 31 * username.hashCode();
+        result += 31 * registerDate.hashCode();
+        return result;
+    }
+
     public static ReviewUserBuilder builder(String username, String registerDate) {
         return new ReviewUserBuilder(username, registerDate);
     }

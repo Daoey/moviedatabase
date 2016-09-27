@@ -32,8 +32,33 @@ public final class DatabaseReview {
 
     @Override
     public String toString() {
-        return "Actor id: " + id + "\n" + "Movie id: " + movieId + "\nReview date: " + reviewDate + "\nReview text: "
-                + reviewText + "\nReview user id: " + reviewUserId;
+        return "Database review id: " + id + "\n" + "Movie id: " + movieId + "\nReview date: " + reviewDate
+                + "\nReview text: " + reviewText + "\nReview user id: " + reviewUserId;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof DatabaseReview) {
+            DatabaseReview otherReview = (DatabaseReview) obj;
+            return id == otherReview.id && movieId == otherReview.movieId && reviewUserId == otherReview.reviewUserId
+                    && reviewDate.equals(otherReview.reviewDate) && reviewText.equals(otherReview.reviewText);
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result += 31 * id;
+        result += 31 * movieId;
+        result += 31 * reviewUserId;
+        result += 31 * reviewDate.hashCode();
+        result += 31 * reviewText.hashCode();
+        return result;
     }
 
     public int getId() {

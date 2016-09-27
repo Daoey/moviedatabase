@@ -11,10 +11,32 @@ public final class Movie {
         this.productionYear = productionYear;
         this.title = title;
     }
-    
+
     @Override
     public String toString() {
         return "Movie id: " + id + "\nProduction year: " + productionYear + "\nTitle: " + title;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof Movie) {
+            Movie otherMovie = (Movie) obj;
+            return id == otherMovie.id && productionYear == otherMovie.productionYear && title.equals(otherMovie.title);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result += 31 * id;
+        result += 31 * productionYear;
+        result += 31 * title.hashCode();
+        return result;
     }
 
     public static MovieBuilder builder(int productionYear, String title) {
